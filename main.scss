@@ -1,0 +1,586 @@
+/* ==================== CSS File =================== */
+
+/* ==================== Media Queries =================== */
+$bp-smallest: 24em; // for 375px
+$bp-small: 37.5em; // for 600px
+$bp-medium:56.25em; // for 900px
+$bp-large: 75em; // for 1200px
+$bp-largest:112.5em; // for 1800px
+
+/* ==================== Fonts =================== */
+$font-primary: 'Poppins', sans-serif;
+
+/* ==================== Colors =================== */
+$color-white: #fff;
+$color-black: #000;
+$color-primary: #2BCA67;
+$color-secondary: #FFC85B;
+$color-text: #8F8F8F;
+$color-grey-light: #e6e6e6;
+$color-heading: #1F1F1F;
+$color-footer: #B6B6B6;
+
+/* ==================== Center our content =================== */
+.row{
+    max-width: 114rem;
+    margin: 0 auto;
+    @media only screen and (max-width: $bp-large){
+        max-width: 100rem;
+        margin: 0 auto;
+    }
+    @media only screen and (max-width: $bp-medium){
+        max-width: 80rem;
+        margin: 0 auto;
+    }
+    @media only screen and (max-width: $bp-small){
+        max-width: 55rem;
+        margin: 0 auto;
+    }
+    @media only screen and (max-width: $bp-smallest){
+        max-width: 50rem;
+        margin: 0 auto;
+    }
+}
+
+/* ==================== Basic Styling =================== */
+ul{
+    list-style: none;
+
+}
+a{
+    text-decoration: none;
+    color: $color-text;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+h1,h2,h3,h4,h5{
+    color: $color-heading;
+}
+.upper-text{
+    text-transform: uppercase;
+}
+.center-text{
+    text-align: center;
+}
+
+*,
+*:before,
+*:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    @media only screen and (max-width: $bp-large){
+        font-size: 56.25%; //9rem
+    }
+    @media only screen and (max-width: $bp-medium){
+        font-size: 50%; //8rem
+    }
+    @media only screen and (max-width: $bp-small){
+        font-size: 47.35%; //7rem
+    }
+    @media only screen and (max-width: $bp-smallest){
+        font-size: 37.5%; //6rem
+    }
+}
+body{
+    font-family: $font-primary;
+    font-weight: 400;
+    color: $color-text;
+    line-height: 1.6;
+    overflow: hidden;
+}
+/* ==================== Header Starts Here =================== */
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6rem;
+    height: 9.6rem;
+    z-index: 9999;
+}
+.logo{
+    font-size: 3.2rem;
+    color: $color-primary;
+    font-weight: 600;
+}
+.main-nav{
+    @media only screen and (max-width: $bp-large){
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba($color-black, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(100%);
+        transition: all 0.5s;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: 0;
+        z-index: 9999;
+    }
+    &__list{
+        display: flex;
+        gap: 5rem;
+        align-items: center;
+        transform: translateX(-45rem);
+        @media only screen and (max-width: $bp-large){
+            flex-direction: column;
+            transform: translateX(0);
+        }
+    }
+    &__link{
+        display: inline-block;
+        font-size: 1.8rem;
+        transition: all 0.3s;
+        font-weight: 600;
+        @media only screen and (max-width: $bp-large){
+            color: $color-white;
+        }
+        &:hover{
+            color: $color-primary;
+        }
+    }
+    &__cta{
+        padding: 1rem 2.4rem;
+        background-color: $color-primary;
+        border-radius: 0.9rem;
+        transform: translateX(35rem);
+        color: $color-white;
+        @media only screen and (max-width: $bp-large){
+            transform: translateX(0);
+        }
+        &:hover{
+            background-color: $color-black;
+            color: $color-white;
+        }
+    }
+}
+.btn-mobile-nav{
+    border: none;
+    background: none;
+    display: none;
+    z-index: 9999;
+    @media only screen and (max-width: $bp-large){
+        display: block;
+    }
+}
+.icon-mobile-nav{
+    font-size: 4rem;
+    cursor: pointer;
+}
+.icon-mobile-nav[name="close-outline"]{
+        display: none;
+}
+.nav-open .main-nav{
+    @media only screen and (max-width: $bp-large){
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+}
+.nav-open .icon-mobile-nav[name="close-outline"]{
+    display: block;
+}
+.nav-open .icon-mobile-nav[name="menu-outline"]{
+    display: none;
+}
+
+/* ==================== Sticky Navigation =================== */
+.sticky .header{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 8rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba($color-primary, 0.97);
+    z-index: 999;
+    box-shadow: 0 1.2rem 3.2rem rgba($color-black, 0.3);
+}
+.sticky .hero{
+    margin-top: 9.6rem;
+}
+.sticky .main-nav__link{
+    color: $color-white;
+    &:hover{
+        color: $color-secondary;
+    }
+}
+.sticky .logo{
+    color: $color-white;
+}
+.sticky .main-nav__cta{
+    background-color: $color-secondary;
+    color: $color-white;
+    &:hover{
+        color: $color-primary;
+    }
+}
+/* ==================== Navigation Ends here =================== */
+/* ==================== Header ends Here =================== */
+
+/* ==================== Section hero starts Here =================== */
+.hero{
+    &__content{
+        display: flex;
+        align-items: center;
+        @media only screen and (max-width: $bp-medium){
+            flex-direction: column;
+        }
+    }
+    &__textbox{
+        flex: 0 0 50%;
+        & > *:not(:last-child){
+            margin-bottom: 4rem;
+        }
+        &--para{
+            font-size: 1.6rem;
+            padding: 0 5vw 0 0;
+        }
+        &--chat{
+            display: flex;
+            align-items: center;
+            gap: 3.2rem;
+            &-icon{
+                font-size: 20rem;
+                color: $color-primary;
+                cursor: pointer;
+            }
+            &-text{
+                font-size: 1.6rem;
+                padding: 0 2vw 0 0;
+            }
+        }
+        &--button{
+            display: flex;
+            gap: 3.2rem;
+            align-items: center;
+        }
+    }
+    &__photo{
+        flex: 0 0 50%;
+        position: relative;
+        z-index: 1;
+        &--img{
+            @media only screen and (max-width: $bp-medium){
+                max-width: 70%;
+            }
+        }
+        &--imgback{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    }
+}
+
+/* ==================== Heading starts Here =================== */
+.heading-primary{
+    font-size: 6rem;
+    font-weight: 500;
+    color: $color-black;
+    line-height: 1;
+}
+.heading-secondary{
+    font-size: 4rem;
+    font-weight: 400;
+    color: $color-white;
+    line-height: 1;
+    &__products{
+        color: $color-black;
+        font-size: 5rem;
+        font-weight: 500;
+    }
+    &__about{
+        color: $color-black;
+        font-size: 5rem;
+        font-weight: 500;
+    }
+    &__partners{
+        color: $color-black;
+        font-size: 5rem;
+        font-weight: 500;
+    }
+    &__testimonials{
+        color: $color-black;
+        font-size: 5rem;
+        font-weight: 500;
+    }
+}
+
+/* ==================== Button starts Here =================== */
+.btn{
+    display: inline-block;
+    &__dark{
+        padding: 1.6rem 3.2rem;
+        background-color: $color-black;
+        color: $color-white;
+        font-size: 1.6rem;
+        transition: all 0.3s;
+        border-radius: 0.9rem;
+        text-transform: uppercase;
+        &:hover{
+            background-color: $color-primary;
+        }
+    }
+    &__play{
+        font-size: 4rem;
+        color: $color-primary;
+        cursor: pointer;
+    }
+    &__primary{
+        color: $color-primary;
+        font-size: 1.6rem;
+    }
+    &__arrow{
+        font-size: 5rem;
+        color: $color-white;
+    }
+    
+}
+/* ==================== Section hero ends Here =================== */
+
+/* ==================== Section Face starts Here =================== */
+.face{
+    padding: 10rem 0;
+    &__content{
+        background-color: $color-black;
+        color: $color-grey-light;
+        display: flex;
+        align-items: center;
+        padding: 8vh 5vw;
+        border-radius: 2rem;
+        @media only screen and (max-width: $bp-medium){
+            flex-direction: column;
+            gap: 3rem;
+        }
+    }
+    &__para{
+        font-size: 1.4rem;
+        padding: 0 5vw;
+    }
+    &__arrow{
+        width: 5rem;
+        height: 5rem;
+        background-color: $color-primary;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}
+/* ==================== Section Face ends Here =================== */
+
+/* ==================== Section Products starts Here =================== */
+.products{
+    &__content{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+        grid-gap: 3rem;
+        &--item{
+            &-desc{
+                transform: translateY(-3rem);
+            }
+            &-name{
+                font-size: 2rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: $color-heading;
+            }
+            &-text{
+                font-size: 1.4rem;
+            }
+            &-price{
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: $color-heading;
+            }
+
+        }
+    }
+}
+/* ==================== Section Products Ends Here =================== */
+
+/* ==================== Section About starts Here =================== */
+
+.about{
+    &__content{
+        display: flex;
+        align-items: center;
+        @media only screen and (max-width: $bp-medium){
+            flex-direction: column;
+        }
+    }
+    &__photo{
+        flex: 0 0 50%;
+        @media only screen and (max-width: $bp-medium){
+            order: 1;
+        }
+        &--img{
+            @media only screen and (max-width: $bp-medium){
+                max-width: 70%;
+            }
+        }
+    }
+    &__textbox{
+        flex: 0 0 50%;
+        &--text{
+            font-size: 1.4rem;
+            margin: 4rem 0;
+        }
+    }
+}
+
+/* ==================== Section About Ends Here =================== */
+
+/* ==================== Section Partners starts Here =================== */
+.partners{
+    margin: 10rem 0;
+    &__content{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-gap: 3rem;
+        padding: 5rem 0;
+    }
+    &__img{
+        max-width: 70%;
+        cursor: pointer;
+    }
+}
+/* ==================== Section Partners Ends Here =================== */
+
+/* ==================== Section Testimonials starts Here =================== */
+.testimonials{
+    margin: 10rem 0;
+    &__content{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+        gap: 3rem;
+        &--item{
+            text-align: center;
+            padding: 5vh 2vw;
+            box-shadow: 0 0.5rem 1rem rgba($color-black, 0.1);
+            & > *:not(:last-child){
+                margin-bottom: 1.5rem;
+            }
+            &-img{
+                border-radius: 50%;
+                width: 10rem;
+                height: 10rem;
+            }
+            &-name{
+                font-size: 2rem;
+                font-weight: 600;
+                color: $color-black;
+            }
+            &-text{
+                font-size: 1.6rem;
+            }
+        }
+    }
+    &__text{
+        font-size: 1.8rem;
+        margin: 5rem 0;
+    }
+}
+/* ==================== Section Testimonials Ends Here =================== */
+
+
+/* ==================== Section Form starts Here =================== */
+.form{
+    padding: 10rem 0 15rem 0;
+    
+    &__content{
+        background-color: $color-black;
+        padding: 8rem 5vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 2rem;
+        @media only screen and (max-width: $bp-medium){
+            flex-direction: column;
+            gap: 4rem;
+        }
+        &--input{
+            padding: 2rem 6rem;
+            border: none;
+            outline: none;
+            border-radius: 0.9rem;
+        }
+        &--icon{
+            transform: translateX(-10rem);
+            &-arrow{
+                font-size: 6rem;
+                color: $color-white;
+                &::before{
+                    content: '';
+                    width: 50rem;
+                    height: 50rem;
+                    border-radius: 50%;
+                    background-color: green;
+                    color: green;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+}
+/* ==================== Section Form ends Here =================== */
+
+/* ==================== Section Footer starts Here =================== */
+.footer{
+    background-color: $color-black;
+    padding: 10rem 0;
+    color: $color-footer;
+    &__content{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+        @media only screen and (max-width:$bp-small){
+            grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+        }
+    }
+    &__logo{
+        font-size: 3.2rem;
+        color: $color-primary;
+        margin-bottom: 2rem;
+    }
+    &__text{
+        font-size: 1.4rem;
+    }
+    &__item{
+
+    }
+    &__list{
+        & > *:not(:last-child){
+            margin-bottom: 2.5rem;
+        }
+    }
+    &__item{
+
+    }
+    &__link{
+        font-size: 1.6rem;
+        color: $color-footer;
+        transition: all 0.3s;
+        &:hover{
+            color: $color-secondary;
+        }
+        &--main{
+            font-size: 2.6rem;
+            color: $color-white;
+        }
+    }
+}
+/* ==================== Section Footer Ends Here =================== */
